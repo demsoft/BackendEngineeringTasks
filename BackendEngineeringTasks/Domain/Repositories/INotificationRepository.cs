@@ -10,5 +10,7 @@ namespace BackendEngineeringTasks.Domain.Repositories
         Task AddAsync(Notification notification);
         Task UpdateAsync(Notification notification);
         Task DeleteAsync(int notificationId);
+        Task MarkNotificationAsReadAsync(int notificationId);
+        Task MarkNotificationAsUnreadAsync(int notificationId);
     }
 }

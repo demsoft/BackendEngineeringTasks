@@ -1,4 +1,5 @@
 ﻿using BackendEngineeringTasks.Domain.Entities;
+using BackendEngineeringTasks.Domain.Exceptions;
 using BackendEngineeringTasks.Domain.Repositories;
 using BackendEngineeringTasks.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
@@ -53,6 +54,36 @@ namespace BackendEngineeringTasks.Infrastructure.Repositories
                 _dbContext.Notifications.Remove(notification);
                 await _dbContext.SaveChangesAsync();
             }
+        }
+
+        public async Task MarkNotificationAsReadAsync(int notificationId)
+        {
+            var notification = await GetByIdAsync(notificationId);
+
+            if (notification == null)
+            {
+                throw new NotFoundException($"Notification with ID {notificationId} not found.");
+            }
+
+            // Mark the notification as read (update its status)
+            notification.IsRead = true;
+
+            await _dbContext.SaveChangesAsync();
+        }
+
+        public async Task MarkNotificationAsUnreadAsync(int notificationId)
+        {
+            var notification = await GetByIdAsync(notificationId);
+
+            if (notification == null)
+            {
+                throw new NotFoundException($"Notification with ID {notificationId} not found.");
+            }
+
+            // Mark the notification as unread (update its status)
+            notification.IsRead = false;
+
+            await _dbContext.SaveChangesAsync();
         }
     }
 }

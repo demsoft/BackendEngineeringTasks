@@ -10,5 +10,7 @@ namespace BackendEngineeringTasks.Application.DTOs
         public DateTime DueDate { get; set; }
         public Priority Priority { get; set; }
         public Status Status { get; set; }
+        //public int? ProjectId { get; set; }
+        public int UserId { get; set; }
     }
 }

@@ -8,7 +8,7 @@ namespace BackendEngineeringTasks.Infrastructure.Repositories
 {
     public class TaskRepository : ITaskRepository
     {
-        private readonly DataContext _dbContext; // Assuming Entity Framework Core for database access
+        private readonly DataContext _dbContext;
 
         public TaskRepository(DataContext dbContext)
         {
@@ -66,6 +66,16 @@ namespace BackendEngineeringTasks.Infrastructure.Repositories
                 _dbContext.Tasks.Remove(taskToDelete);
                 await _dbContext.SaveChangesAsync();
             }
+        }
+
+        public async Task<IEnumerable<Tasks>> GetTasksDueWithin48HoursAsync(DateTime thresholdDateTime)
+        {
+            // Query tasks with due dates within the next 48 hours
+            var dueTasks = await _dbContext.Tasks
+                .Where(task => task.DueDate <= thresholdDateTime)
+                .ToListAsync();
+
+            return dueTasks;
         }
     }
 }

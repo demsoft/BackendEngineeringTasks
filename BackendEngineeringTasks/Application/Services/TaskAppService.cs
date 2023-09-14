@@ -95,6 +95,18 @@ namespace BackendEngineeringTasks.Application.Services
             return _mapper.Map<TaskDto>(task);
         }
 
+        public async Task<IEnumerable<TaskDto>> GetTasksByProjectIdAsync(int projectId)
+        {
+            var task = await _taskRepository.GetTasksByProjectIdAsync(projectId);
+            return _mapper.Map< IEnumerable<TaskDto>>(task);
+        }
+
+        public async Task<IEnumerable<TaskDto>> GetTasksByUserIdAsync(int userId)
+        {
+            var task = await _taskRepository.GetTasksByUserIdAsync(userId);
+            return _mapper.Map<IEnumerable<TaskDto>>(task);
+        }
+
         public async Task<IEnumerable<TaskDto>> GetTasksByPriorityAsync(Priority priority)
         {
             var tasks = await _taskRepository.GetByPriorityAsync(priority);

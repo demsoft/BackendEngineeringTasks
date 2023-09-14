@@ -5,6 +5,7 @@ namespace BackendEngineeringTasks.Domain.Repositories
     public interface INotificationRepository
     {
         Task<Notification> GetByIdAsync(int notificationId);
+        Task<IEnumerable<Notification>> GeAllNotificationAsync();
         Task<IEnumerable<Notification>> GetByUserIdAsync(int userId);
         Task<IEnumerable<Notification>> GetUnreadByUserIdAsync(int userId);
         Task AddAsync(Notification notification);

@@ -40,6 +40,12 @@ namespace BackendEngineeringTasks.Application.Services
             return _mapper.Map< IEnumerable<NotificationDto>>(notifications);
         }
 
+        public async Task<IEnumerable<NotificationDto>> GetNotificationAsync()
+        {
+            var notifications = await _notificationRepository.GeAllNotificationAsync();
+            return _mapper.Map<IEnumerable<NotificationDto>>(notifications);
+        }
+
         public async Task<NotificationDto> GetNotificationByIdAsync(int notificationId)
         {
             var notification = await _notificationRepository.GetByIdAsync(notificationId);

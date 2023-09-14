@@ -85,5 +85,10 @@ namespace BackendEngineeringTasks.Infrastructure.Repositories
 
             await _dbContext.SaveChangesAsync();
         }
+
+        public async Task<IEnumerable<Notification>> GeAllNotificationAsync()
+        {
+            return await _dbContext.Notifications.ToListAsync();
+        }
     }
 }

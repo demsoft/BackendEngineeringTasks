@@ -38,6 +38,28 @@ namespace BackendEngineeringTasks.API.Controllers
             return Ok(task);
         }
 
+        [HttpGet("get/by/user/{userId}")]
+        public async Task<IActionResult> GetTasksByUserIdAsync(int userId)
+        {
+            var task = await _tasks.GetTasksByUserIdAsync(userId);
+            if (task == null)
+            {
+                return NotFound();
+            }
+            return Ok(task);
+        }
+
+        [HttpGet("get/by/project/{projectId}")]
+        public async Task<IActionResult> GetTasksByProjectIdAsync(int projectId)
+        {
+            var task = await _tasks.GetTasksByProjectIdAsync(projectId);
+            if (task == null)
+            {
+                return NotFound();
+            }
+            return Ok(task);
+        }
+
         [HttpPut("{taskId}/assign/task/to/project/{projectId}")]
         public async Task<IActionResult> AssignTaskToProjectAsync(int taskId, int projectId)
         {
@@ -100,9 +122,9 @@ namespace BackendEngineeringTasks.API.Controllers
                 await _tasks.DeleteTaskAsync(taskId);
                 return NoContent();
             }
-            catch (NotFoundException)
+            catch (NotFoundException ex)
             {
-                return NotFound();
+                return NotFound(ex.Message);
             }
         }
     }

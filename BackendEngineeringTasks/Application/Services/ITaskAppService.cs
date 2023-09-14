@@ -15,5 +15,7 @@ namespace BackendEngineeringTasks.Application.Services
         Task<TaskDto> CreateTaskAsync(TaskDto taskDto);
         Task UpdateTaskAsync(int taskId, TaskDto taskDto);
         Task DeleteTaskAsync(int taskId);
+        Task<IEnumerable<TaskDto>> GetTasksByProjectIdAsync(int projectId);
+        Task<IEnumerable<TaskDto>> GetTasksByUserIdAsync(int userId);
     }
 }

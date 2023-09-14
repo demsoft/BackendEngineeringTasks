@@ -79,6 +79,13 @@ namespace BackendEngineeringTasks.API.Controllers
             return Ok(notification);
         }
 
+        [HttpGet("get/all")]
+        public async Task<IActionResult> GetNotificationAsync()
+        {
+            var notification = await _notifcationAppService.GetNotificationAsync();
+            return Ok(notification);
+        }
+
         [HttpPost]
         public async Task<IActionResult> CreateNotificationAsync(NotificationDto notificationDto)
         {

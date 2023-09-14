@@ -14,5 +14,7 @@ namespace BackendEngineeringTasks.Domain.Repositories
         Task UpdateAsync(Tasks task);
         Task DeleteAsync(int taskId);
         Task<IEnumerable<Tasks>> GetTasksDueWithin48HoursAsync(DateTime thresholdDateTime);
+        Task<IEnumerable<Tasks>> GetTasksByProjectIdAsync(int projectId);
+        Task<IEnumerable<Tasks>> GetTasksByUserIdAsync(int userId);
     }
 }

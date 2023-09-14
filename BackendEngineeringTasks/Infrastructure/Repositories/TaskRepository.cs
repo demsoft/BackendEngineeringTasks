@@ -77,5 +77,23 @@ namespace BackendEngineeringTasks.Infrastructure.Repositories
 
             return dueTasks;
         }
+
+        public async Task<IEnumerable<Tasks>> GetTasksByProjectIdAsync(int projectId)
+        {
+            var tasksInProject = await _dbContext.Tasks
+               .Where(task => task.ProjectId == projectId)
+               .ToListAsync();
+
+            return tasksInProject;
+        }
+
+        public async Task<IEnumerable<Tasks>> GetTasksByUserIdAsync(int userId)
+        {
+            var userTasks = await _dbContext.Tasks
+             .Where(task => task.UserId == userId)
+             .ToListAsync();
+
+            return userTasks;
+        }
     }
 }

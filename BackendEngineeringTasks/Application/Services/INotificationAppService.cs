@@ -4,6 +4,7 @@ namespace BackendEngineeringTasks.Application.Services
 {
     public interface INotificationAppService
     {
+        Task<IEnumerable<NotificationDto>> GetNotificationAsync();
         Task<NotificationDto> GetNotificationByIdAsync(int notificationId);
         Task<IEnumerable<NotificationDto>> GetByUserIdAsync(int userId);
         Task<IEnumerable<NotificationDto>> GetUnreadByUserIdAsync(int userId);

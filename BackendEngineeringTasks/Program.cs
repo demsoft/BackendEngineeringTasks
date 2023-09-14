@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using System.Net;
 using AutoMapper;
 using BackendEngineeringTasks.Application.Mapping;
+using BackendEngineeringTasks.Infrastructure.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,6 +20,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddAutoMapper(typeof(Program));
 builder.Services.AddAutoMapper(typeof(TaskMappingProfile), typeof(ProjectMappingProfile), typeof(UserMappingProfile), typeof(NotificationMappingProfile));
+builder.Services.AddHostedService<NotificationBackgroundService>();
 builder.Services.AddDbContext<DataContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));

@@ -6,7 +6,7 @@ namespace BackendEngineeringTasks.Domain.Repositories
     {
         Task<User> GetByIdAsync(int userId);
         Task<IEnumerable<User>> GetAllAsync();
-        Task<IEnumerable<User>> GetUsersByTaskAsync(int taskId);
+        //Task<IEnumerable<User>> GetUsersByTaskAsync(int taskId);
         Task<User> CreateUserAsync(User user);
         Task UpdateUserAsync(User user);
         Task DeleteUserAsync(int userId);

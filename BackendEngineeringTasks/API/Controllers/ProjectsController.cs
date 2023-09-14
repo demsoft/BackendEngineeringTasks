@@ -37,8 +37,17 @@ namespace BackendEngineeringTasks.API.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateProject(ProjectDto projectDto)
         {
-            var createdProject = await _projectAppService.CreateProjectAsync(projectDto);
-            return CreatedAtAction(nameof(GetProjectById), new { projectId = createdProject.Id }, createdProject);
+            try
+            {
+                var createdProject = await _projectAppService.CreateProjectAsync(projectDto);
+                return CreatedAtAction(nameof(GetProjectById), new { projectId = createdProject.Id }, createdProject);
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.Message);
+            }
+
         }
 
         [HttpPut("{projectId}")]
@@ -49,9 +58,13 @@ namespace BackendEngineeringTasks.API.Controllers
                 await _projectAppService.UpdateProjectAsync(projectId, projectDto);
                 return NoContent();
             }
-            catch (NotFoundException)
+            catch (NotFoundException ex)
             {
-                return NotFound();
+                return NotFound(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
             }
         }
 
@@ -63,9 +76,13 @@ namespace BackendEngineeringTasks.API.Controllers
                 await _projectAppService.DeleteProjectAsync(projectId);
                 return NoContent();
             }
-            catch (NotFoundException)
+            catch (NotFoundException ex)
             {
-                return NotFound();
+                return NotFound(ex.Message);
+            }
+            catch(Exception ex)
+            {
+                return BadRequest(ex.Message);
             }
         }
     }

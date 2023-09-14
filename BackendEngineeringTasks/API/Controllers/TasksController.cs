@@ -72,6 +72,10 @@ namespace BackendEngineeringTasks.API.Controllers
             {
                 return NotFound(ex.Message);
             }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpGet("{taskId}")]
@@ -86,12 +90,13 @@ namespace BackendEngineeringTasks.API.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateNotificationAsync(TaskDto taskDto)
+        public async Task<IActionResult> CreateTaskAsync(TaskDto taskDto)
         {
             try
             {
                 var createdTask = await _tasks.CreateTaskAsync(taskDto);
-                return CreatedAtAction(nameof(GetTaskByIdAsync), new { taskId = createdTask.Id }, createdTask);
+                return Ok(createdTask);
+                //return CreatedAtAction(nameof(GetTaskByIdAsync), new { taskId = createdTask.Id }, createdTask);
             }
             catch (Exception ex)
             {
@@ -112,6 +117,10 @@ namespace BackendEngineeringTasks.API.Controllers
             {
                 return NotFound(ex.Message);
             }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpDelete("{taskId}")]
@@ -125,6 +134,10 @@ namespace BackendEngineeringTasks.API.Controllers
             catch (NotFoundException ex)
             {
                 return NotFound(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
             }
         }
     }

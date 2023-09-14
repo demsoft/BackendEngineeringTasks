@@ -24,12 +24,12 @@ namespace BackendEngineeringTasks.Infrastructure.Repositories
             return await _dbContext.Users.ToListAsync();
         }
 
-        public async Task<IEnumerable<User>> GetUsersByTaskAsync(int taskId)
-        {
-            return await _dbContext.Users
-                .Where(u => u.Tasks.Any(t => t.Id == taskId))
-                .ToListAsync();
-        }
+        //public async Task<IEnumerable<User>> GetUsersByTaskAsync(int taskId)
+        //{
+        //    return await _dbContext.Users
+        //        .Where(u => u.Tasks.Any(t => t.Id == taskId))
+        //        .ToListAsync();
+        //}
 
         public async Task<User> CreateUserAsync(User user)
         {

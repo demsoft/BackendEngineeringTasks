@@ -36,8 +36,15 @@ namespace BackendEngineeringTasks.API.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateUser(UserDto userDto)
         {
-            var createdUser = await _userAppService.CreateUserAsync(userDto);
-            return CreatedAtAction(nameof(GetUserById), new { userId = createdUser.Id }, createdUser);
+            try
+            {
+                var createdUser = await _userAppService.CreateUserAsync(userDto);
+                return CreatedAtAction(nameof(GetUserById), new { userId = createdUser.Id }, createdUser);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpPut("{userId}")]
@@ -52,6 +59,10 @@ namespace BackendEngineeringTasks.API.Controllers
             {
                 return NotFound(ex.Message);
             }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpDelete("{userId}")]
@@ -62,9 +73,13 @@ namespace BackendEngineeringTasks.API.Controllers
                 await _userAppService.DeleteUserAsync(userId);
                 return NoContent();
             }
-            catch (NotFoundException)
+            catch (NotFoundException ex)
             {
-                return NotFound();
+                return NotFound(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
             }
         }
     }

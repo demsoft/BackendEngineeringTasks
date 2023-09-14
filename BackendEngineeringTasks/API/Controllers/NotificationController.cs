@@ -45,7 +45,7 @@ namespace BackendEngineeringTasks.API.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(500, "Internal Server Error");
+                return BadRequest(ex.Message);
             }
         }
 
@@ -64,7 +64,7 @@ namespace BackendEngineeringTasks.API.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(500, "Internal Server Error");
+                return BadRequest(ex.Message);
             }
         }
 
@@ -113,6 +113,10 @@ namespace BackendEngineeringTasks.API.Controllers
             {
                 return NotFound(ex.Message);
             }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpDelete("{notificationId}")]
@@ -123,9 +127,13 @@ namespace BackendEngineeringTasks.API.Controllers
                 await _notifcationAppService.DeleteNotificationAsync(notificationId);
                 return NoContent();
             }
-            catch (NotFoundException)
+            catch (NotFoundException ex)
             {
-                return NotFound();
+                return NotFound(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
             }
         }
     }

@@ -31,7 +31,7 @@ Before you begin, ensure you have met the following requirements:
 2. Navigate to the project directory:
 
    ```bash
-   cd task-management-system
+   cd BackendEngineeringTasks
 
 3. Navigate to the project directory:
 
@@ -54,11 +54,13 @@ The Task Management System provides the following API endpoints:
 To run the application locally, use the following command:
 
    ```bash
-   dotnet run --project TaskManagementSystem.API
+   dotnet run 
   ````
-The API will be accessible at http://localhost:5000 by default. You can modify the port and other settings in the appsettings.json file.
+The API will be accessible at http://localhost:5104/swagger/index.html by default. 
+You can modify the port and other settings in the appsettings.json file.
 
 ### Configuration
 
-You can configure the application settings in the appsettings.json file located in the TaskManagementSystem.API project. 
-This file contains settings for database connections, logging, and other application-specific configurations.
+- You can configure the application settings in the appsettings.json file located in the BackendEngineeringTasks project. 
+- This file contains settings for database connections, logging, and other application-specific configurations.
+- As for the database connections, it's already connected to my live database with a public IP. You can change it to yours and run migration on your database(MSSQL).

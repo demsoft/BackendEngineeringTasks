@@ -26,7 +26,7 @@ Before you begin, ensure you have met the following requirements:
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/demsoft/task-management-system.git
+   git clone https://github.com/demsoft/BackendEngineeringTasks.git
 
 2. Navigate to the project directory:
 
@@ -63,4 +63,4 @@ You can modify the port and other settings in the appsettings.json file.
 
 - You can configure the application settings in the appsettings.json file located in the BackendEngineeringTasks project. 
 - This file contains settings for database connections, logging, and other application-specific configurations.
-- As for the database connections, it's already connected to my live database with a public IP. You can change it to yours and run migration on your database(MSSQL).
+- As for the database connections, it's already connected to my live database with a public IP. You can change it to yours and run a migration on your database(MSSQL).
